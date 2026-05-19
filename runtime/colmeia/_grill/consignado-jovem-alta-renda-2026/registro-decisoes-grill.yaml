@@ -1,0 +1,106 @@
+# [DRY-RUN] Exemplo — registro 100% pós grill-me
+iniciativa: consignado-jovem-alta-renda-2026
+versao: 1
+
+entradas:
+  - entrada_id: grill-hipoteses-c1-20260518
+    momento: hipoteses
+    ciclo: 1
+    grill_ref: grill-gate-03-20260518.md
+    data: 2026-05-18
+    decisor_final: head
+    itens:
+      - item_id: H1
+        tipo: hipotese
+        decisao: continuar
+        motivadores_continuar:
+          - tipo: evidencia
+            fonte: visao-produto
+            referencia: visao-produto.md#drop-cet
+            descricao: 62% abandono na tela CET — intervenção direta KR1
+          - tipo: evidencia
+            fonte: visao-cliente
+            referencia: visao-cliente.md
+            descricao: desconfiança taxa em 3 canais
+        motivadores_nao_continuar: []
+      - item_id: H2
+        tipo: hipotese
+        decisao: continuar
+        motivadores_continuar:
+          - tipo: evidencia
+            fonte: visao-cliente
+            referencia: P6 entrevista
+            descricao: margem antes do valor reduz ansiedade
+        motivadores_nao_continuar: []
+      - item_id: H3
+        tipo: hipotese
+        decisao: desconsiderar
+        motivadores_continuar: []
+        motivadores_nao_continuar:
+          - tipo: risco
+            fonte: grill-hipoteses
+            referencia: GRILL-SCOPE-01
+            descricao: pré-aprovação 90s — escopo alto, confiança baixa no ciclo 1
+          - tipo: head
+            fonte: sessao
+            referencia: gate-02-c1
+            descricao: Head adia H3 para ciclo futuro se OKR Q3 subir
+
+  - entrada_id: grill-svm-c1-20260518
+    momento: svm
+    ciclo: 1
+    data: 2026-05-18
+    decisor_final: head
+    itens:
+      - item_id: H1
+        tipo: svm
+        decisao: continuar_prototipo
+        motivadores_continuar:
+          - tipo: svm
+            fonte: svm-resultados.md
+            referencia: Strong
+            descricao: 4/5 personas [SINTÉTICO] — merece teste real
+        motivadores_nao_continuar: []
+      - item_id: H2
+        tipo: svm
+        decisao: continuar_prototipo
+        motivadores_continuar:
+          - tipo: svm
+            fonte: svm-resultados.md
+            referencia: Iterate
+            descricao: benefício claro; ajustar copy no protótipo
+        motivadores_nao_continuar: []
+      - item_id: H3
+        tipo: svm
+        decisao: desconsiderar
+        motivadores_continuar: []
+        motivadores_nao_continuar:
+          - tipo: evidencia
+            fonte: registro anterior
+            referencia: grill-hipoteses-c1#H3
+            descricao: já desconsiderada no grill hipoteses — não entra SVM
+
+  - entrada_id: grill-decisao-exp-c2-20260518
+    momento: decisao-exp
+    ciclo: 2
+    data: 2026-05-18
+    decisor_final: head
+    itens:
+      - item_id: H4
+        tipo: experimento
+        decisao: scale
+        motivadores_continuar:
+          - tipo: experimento_real
+            fonte: EXP-C02-01
+            referencia: 7/10 contratos, Safari 13%
+            descricao: evidência cliente real — critérios pré-definidos atingidos
+        motivadores_nao_continuar: []
+      - item_id: H5
+        tipo: experimento
+        decisao: scale
+        motivadores_continuar:
+          - tipo: experimento_real
+            fonte: EXP-C02-02
+            referencia: gap iOS 0,3pp
+            descricao: sticky iOS fecha gap vs Android
+        motivadores_nao_continuar: []
