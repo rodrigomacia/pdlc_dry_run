@@ -19,3 +19,6 @@ hipoteses:
     segmento: jovem_alta_renda_25_35
     risco: alto
     confianca: baixa
+    status: descartada
+    decisao_pos_grill: desconsiderar
+    registro_grill_ref: grill-hipoteses-c1-20260518#H3
