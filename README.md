@@ -37,7 +37,7 @@ Execução em pasta isolada — não altera o runtime `colmeia/` do framework.
 |------------|----------|
 | Cartão virtual | [REGISTRO-EXECUCAO.md](./REGISTRO-EXECUCAO.md) |
 | Consignado jovem AR | [REGISTRO-consignado-jovem-alta-renda-2026.md](./REGISTRO-consignado-jovem-alta-renda-2026.md) |
-| Consignado **ciclo 02** | [ciclo02 início](./orquestracao/consignado-ciclo02-inicio.md) → [favo 03](./orquestracao/consignado-ciclo02-favo03.md) Gate 03 ✓ → **favo 04** |
+| Consignado **ciclo 02** | [favo 04–05](./orquestracao/consignado-ciclo02-favo04-05.md) · KR1 **14,2%** ✓ |
 
 ## Documentação HTML
 

@@ -1,0 +1,6 @@
+# [DRY-RUN] ciclo 2
+disponibilidade: 99.95
+latencia_comparador_p95_ms: 400
+dados_mercado_sla: atualizacao_diaria_bcb
+acessibilidade: WCAG_AA
+privacidade: sem_enviar_simulacao_terceiros

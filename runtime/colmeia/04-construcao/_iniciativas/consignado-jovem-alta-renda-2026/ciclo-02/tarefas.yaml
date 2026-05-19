@@ -1,0 +1,21 @@
+# [DRY-RUN] ciclo 2
+iniciativa: consignado-jovem-alta-renda-2026
+ciclo: 2
+feature_id: FEAT-CONSIG-COMP-02
+commit_hash: dry-run-d4f8e2b
+
+tarefas:
+  - id: T4
+    historia: US-04
+    entregavel: codigo
+    status: pronto
+  - id: T5
+    historia: US-05
+    entregavel: codigo
+    status: pronto
+  - id: T6
+    historia: US-06
+    entregavel: codigo
+    status: pronto
+
+cobertura_historias: 100%
