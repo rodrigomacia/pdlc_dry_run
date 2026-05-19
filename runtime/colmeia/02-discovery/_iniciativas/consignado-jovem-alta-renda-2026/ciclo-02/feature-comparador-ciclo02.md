@@ -3,8 +3,9 @@ favo: 02-discovery
 iniciativa: consignado-jovem-alta-renda-2026
 ciclo: 2
 feature_id: FEAT-CONSIG-COMP-02
-validacao_real: pendente
-status: candidata-gate-02
+validacao_real: confirmada
+status: aprovada-gate-03-scale
+experimentos_ref: [EXP-C02-01, EXP-C02-02]
 dry_run: true
 ---
 
@@ -29,6 +30,6 @@ KR1 — 11,2% → 14% · reduzir saída Safari e fechar no app
 
 Ciclo 01 (FEAT-CONSIG-SIM-01) em produção.
 
-## Gate 03
+## Validação real (Gate 03 ciclo 02)
 
-`validacao_real: pendente`
+EXP-C02-01: 7/10 contrataram · Safari 13% · EXP-C02-02: gap iOS/Android 0,3 pp [DRY-RUN]
