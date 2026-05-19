@@ -1,0 +1,5 @@
+# [DRY-RUN] NFR — consignado ciclo 1
+disponibilidade: 99.95
+latencia_simulacao_p95_ms: 1200
+compliance: [CDC, CET_transparencia, LGPD]
+auditoria: log_consentimento_assinatura
