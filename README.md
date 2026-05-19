@@ -1,6 +1,7 @@
 # PDLC Dry Run
 
 Repositório de **simulações do Ciclo de Produção Digital** (Cursor / agentes).  
+**Repositório:** [github.com/rodrigomacia/pdlc_dry_run](https://github.com/rodrigomacia/pdlc_dry_run)  
 Framework oficial: [github.com/rodrigomacia/pdlc_devin_cli](https://github.com/rodrigomacia/pdlc_devin_cli)
 
 Execução em pasta isolada — não altera o runtime `colmeia/` do framework.
@@ -36,7 +37,7 @@ Execução em pasta isolada — não altera o runtime `colmeia/` do framework.
 |------------|----------|
 | Cartão virtual | [REGISTRO-EXECUCAO.md](./REGISTRO-EXECUCAO.md) |
 | Consignado jovem AR | [REGISTRO-consignado-jovem-alta-renda-2026.md](./REGISTRO-consignado-jovem-alta-renda-2026.md) |
-| Consignado **ciclo 02** (05→02) | [orquestracao/consignado-ciclo02-inicio.md](./orquestracao/consignado-ciclo02-inicio.md) → Gate 02 ✓ → favo **03** |
+| Consignado **ciclo 02** | [ciclo02 início](./orquestracao/consignado-ciclo02-inicio.md) → [favo 03](./orquestracao/consignado-ciclo02-favo03.md) Gate 03 ✓ → **favo 04** |
 
 ## Publicar
 
