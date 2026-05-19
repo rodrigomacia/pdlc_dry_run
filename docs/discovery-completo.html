@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Discovery completo — PDLC Dry Run</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #06070d;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text: #f0f4fc;
+      --muted: #94a3b8;
+      --mint: #00e5b8;
+      --violet: #8b7cff;
+      --amber: #ffb020;
+      --f02: #a78bfa;
+      --radius: 14px;
+      --font: 'Outfit', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 40% at 10% -5%, rgba(0,229,184,.15), transparent 50%),
+        radial-gradient(ellipse 50% 35% at 95% 5%, rgba(139,124,255,.18), transparent 45%);
+      pointer-events: none; z-index: 0;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    header {
+      text-align: center;
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      background: linear-gradient(120deg, var(--mint), var(--violet), var(--amber));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle { color: var(--muted); margin-top: 0.75rem; font-size: 1.05rem; }
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      margin: 0.2rem;
+    }
+    .badge-dry { background: rgba(255,176,32,.15); color: var(--amber); border: 1px solid rgba(255,176,32,.3); }
+    .badge-f02 { background: rgba(167,139,250,.15); color: var(--f02); border: 1px solid rgba(167,139,250,.3); }
+    .badge-ok { background: rgba(0,229,184,.12); color: var(--mint); border: 1px solid rgba(0,229,184,.25); }
+    nav.toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    nav.toc h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.75rem; }
+    nav.toc ul { list-style: none; columns: 2; gap: 1rem; }
+    @media (max-width: 600px) { nav.toc ul { columns: 1; } }
+    nav.toc a { color: var(--mint); text-decoration: none; font-size: 0.95rem; }
+    nav.toc a:hover { text-decoration: underline; }
+    nav.toc li { margin-bottom: 0.35rem; }
+    section.initiative {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 1rem;
+    }
+    section.initiative > h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--f02);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    section.initiative .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .cycle-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .cycle-block h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--mint);
+      margin: 1.25rem 0 0.5rem;
+    }
+    p, li { color: #cbd5e1; margin-bottom: 0.5rem; }
+    ul { padding-left: 1.25rem; margin-bottom: 0.75rem; }
+    blockquote {
+      border-left: 3px solid var(--violet);
+      padding: 0.5rem 0 0.5rem 1rem;
+      margin: 0.75rem 0;
+      color: var(--muted);
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.65rem;
+      text-align: left;
+    }
+    th { background: rgba(255,255,255,.06); color: var(--text); font-weight: 600; }
+    td { color: #cbd5e1; }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .card {
+      background: rgba(0,0,0,.25);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+    .card h5 { font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--text); }
+    .card.mercado { border-top: 3px solid #3b82f6; }
+    .card.produto { border-top: 3px solid var(--mint); }
+    .card.cliente { border-top: 3px solid var(--violet); }
+    .hypo { font-family: var(--mono); font-size: 0.82rem; }
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+    .flow span {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+    }
+    .flow .arrow { color: var(--muted); border: none; background: none; }
+    footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--mint); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="badge badge-dry">Dry run</span>
+      <span class="badge badge-f02">Favo 02 — Discovery</span>
+      <h1>Discovery completo</h1>
+      <p class="subtitle">Consolidação das três visões, hipóteses, SVM, protótipos e features — PDLC Dry Run</p>
+      <p style="margin-top:1rem">
+        <a href="https://github.com/rodrigomacia/pdlc_dry_run">pdlc_dry_run</a>
+        · Gerado em 2026-05-18
+      </p>
+    </header>
+
+    <nav class="toc" aria-label="Índice">
+      <h2>Índice</h2>
+      <ul>
+        <li><a href="#consignado-c1">Consignado jovem AR — ciclo 1</a></li>
+        <li><a href="#consignado-c2">Consignado jovem AR — ciclo 2</a></li>
+        <li><a href="#piloto">Piloto cartão virtual</a></li>
+        <li><a href="#resumo">Resumo comparativo</a></li>
+      </ul>
+    </nav>
+
+    <!-- CONSIGNADO CICLO 1 -->
+    <section class="initiative" id="consignado-c1">
+      <h2>Consignado jovem alta renda <span class="badge badge-f02">Ciclo 1</span></h2>
+      <p class="meta">
+        <code>consignado-jovem-alta-renda-2026</code> · Segmento: 25–35 anos, renda ≥ R$ 15k ·
+        Gate 02 ✓ · Feature <code>FEAT-CONSIG-SIM-01</code>
+      </p>
+
+      <div class="cycle-block">
+        <h3>Contexto (OKR favo 01)</h3>
+        <p><strong>Objective:</strong> Aumentar conversão de crédito consignado (simulação → contratação digital) para jovens de alta renda.</p>
+        <table>
+          <thead><tr><th>KR</th><th>Métrica</th><th>Baseline</th><th>Target</th></tr></thead>
+          <tbody>
+            <tr><td>KR1</td><td>Conversão simulação→contratação</td><td>8%</td><td>14%</td></tr>
+            <tr><td>KR2</td><td>Tempo até assinatura</td><td>12 min</td><td>6 min</td></tr>
+            <tr><td>KR3</td><td>NPS pós-contratação</td><td>32</td><td>45</td></tr>
+          </tbody>
+        </table>
+        <h4>Hipóteses estratégicas (entrada discovery)</h4>
+        <ul>
+          <li>Falta de transparência da <strong>CET</strong> na simulação</li>
+          <li><strong>Margem consignável</strong> só no fim do fluxo gera ansiedade</li>
+          <li>Fintechs com <strong>pré-aprovação em 60s</strong> — fluxo percebido como lento</li>
+        </ul>
+      </div>
+
+      <div class="cycle-block">
+        <h3>Três visões</h3>
+        <div class="grid-3">
+          <article class="card mercado">
+            <h5>Visão de mercado</h5>
+            <p>Fintechs reportam onboarding &lt;3 min e simulação instantânea — pressão de expectativa no segmento 25–35.</p>
+            <table>
+              <tr><th>Player</th><th>Movimento</th></tr>
+              <tr><td>Creditas</td><td>CET destacado no simulador</td></tr>
+              <tr><td>Banco X digital</td><td>Pré-aprovação sem holerite</td></tr>
+            </table>
+          </article>
+          <article class="card produto">
+            <h5>Visão de produto</h5>
+            <table>
+              <tr><th>Etapa</th><th>Taxa</th><th>Drop</th></tr>
+              <tr><td>Início simulação</td><td>100%</td><td>—</td></tr>
+              <tr><td>Simulação completa</td><td>50%</td><td>50%</td></tr>
+              <tr><td>Proposta aceita</td><td>20%</td><td>30%</td></tr>
+              <tr><td>Contrato assinado</td><td><strong>8%</strong></td><td>12%</td></tr>
+            </table>
+            <p><strong>62%</strong> do abandono pós-simulação na tela CET/taxas · p50 até assinatura: <strong>12 min</strong></p>
+          </article>
+          <article class="card cliente">
+            <h5>Visão de cliente</h5>
+            <blockquote>"Não entendi se a taxa era fixa ou se tinha pegadinha no contrato." — P2, 29a</blockquote>
+            <blockquote>"Queria saber quanto posso pegar antes de ficar preenchendo valor." — P6, 33a</blockquote>
+            <p>App Store: "Simulação demora e no final muda a parcela" · Central: tickets "taxa vs concorrente" +15%</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="cycle-block">
+        <h3>Oportunidade priorizada</h3>
+        <p><strong>O1 — Simplificar simulação:</strong> CET transparente + margem upfront (≥2 visões, maior impacto KR1)</p>
+
+        <h4>Hipóteses de discovery</h4>
+        <table>
+          <thead><tr><th>ID</th><th>Hipótese</th><th>Risco</th><th>Confiança</th></tr></thead>
+          <tbody>
+            <tr><td class="hypo">H1</td><td>Breakdown CET + custo total aumenta conversão ≥4 pp</td><td>médio</td><td>alta</td></tr>
+            <tr><td class="hypo">H2</td><td>Margem antes do valor reduz abandono ≥15%</td><td>baixo</td><td>média</td></tr>
+            <tr><td class="hypo">H3</td><td>Pré-aprovação &lt;90s aumenta contratação ≥3 pp</td><td>alto</td><td>baixa</td></tr>
+          </tbody>
+        </table>
+
+        <h4>SVM [SINTÉTICO]</h4>
+        <table>
+          <tr><th>H1</th><td><strong>Strong</strong> → protótipo</td></tr>
+          <tr><th>H2</th><td><strong>Strong</strong> → protótipo</td></tr>
+          <tr><th>H3</th><td>Iterate (não no escopo v1)</td></tr>
+        </table>
+
+        <h4>Protótipo</h4>
+        <table>
+          <tr><th>Tela</th><th>Hipótese</th><th>Objetivo</th></tr>
+          <tr><td>T1 Boas-vindas</td><td>H1</td><td>Expectativa &lt;4 min</td></tr>
+          <tr><td>T2 Margem + CET</td><td>H1, H2</td><td>Transparência antes do valor</td></tr>
+          <tr><td>T3 Comparador 12x/24x</td><td>H1</td><td>Decisão informada</td></tr>
+          <tr><td>T4 Resumo pré-assinatura</td><td>H2</td><td>"Nada muda após assinar"</td></tr>
+        </table>
+
+        <h4>Feature candidata — FEAT-CONSIG-SIM-01</h4>
+        <ul>
+          <li><strong>US-01:</strong> Margem consignável + CET detalhado antes de escolher valor</li>
+          <li><strong>US-02:</strong> Comparar 2 prazos lado a lado (custo total destacado)</li>
+          <li><strong>US-03:</strong> Resumo final antes da assinatura digital</li>
+        </ul>
+        <p><span class="badge badge-ok">Gate 02 aprovado</span> · <code>validacao_real: pendente</code> → favo 03</p>
+      </div>
+    </section>
+
+    <!-- CONSIGNADO CICLO 2 -->
+    <section class="initiative" id="consignado-c2">
+      <h2>Consignado jovem alta renda <span class="badge badge-f02">Ciclo 2</span></h2>
+      <p class="meta">
+        Entrada: handoff 05→02 (insight O5) · KR1 em 11,2% (meta 14%) ·
+        Feature <code>FEAT-CONSIG-COMP-02</code> · Gate 02 ✓ · Gate 03 scale ✓
+      </p>
+
+      <div class="cycle-block">
+        <h3>Insight operacional (favo 05)</h3>
+        <p><strong>O5:</strong> Jovens AR comparam taxa com fintech no Safari antes de voltar ao app — 22% saem para browser pós-simulação (iOS 31% vs Android 18%).</p>
+        <div class="flow">
+          <span>05 Operação</span><span class="arrow">→</span>
+          <span>02 Discovery c2</span><span class="arrow">→</span>
+          <span>03 Scale</span><span class="arrow">→</span>
+          <span>04 Construção</span>
+        </div>
+      </div>
+
+      <div class="cycle-block">
+        <h3>Três visões — ciclo 2</h3>
+        <div class="grid-3">
+          <article class="card mercado">
+            <h5>Mercado</h5>
+            <p>Comparador regulatório in-app é <strong>table stakes</strong> para jovem AR.</p>
+            <table>
+              <tr><th>Player</th><th>Tempo oferta</th></tr>
+              <tr><td>Creditas</td><td>~45s</td></tr>
+              <tr><td>Banco Y</td><td>"Sua taxa vs média"</td></tr>
+              <tr><td>Nosso app (c1)</td><td>~8 min até contrato</td></tr>
+            </table>
+          </article>
+          <article class="card produto">
+            <h5>Produto (pós-rollout c1)</h5>
+            <table>
+              <tr><th>Métrica</th><th>Valor</th></tr>
+              <tr><td>Simulação completa</td><td>52% (+2 pp)</td></tr>
+              <tr><td>Abandono pós-simulação</td><td>38% (-12 pp)</td></tr>
+              <tr><td>Saída Safari</td><td><strong>22%</strong></td></tr>
+              <tr><td>Conversão</td><td>9,8%</td></tr>
+            </table>
+          </article>
+          <article class="card cliente">
+            <h5>Cliente</h5>
+            <blockquote>"Abri o Google para ver se a taxa era boa — achei mais barato e fiquei na dúvida." — P4</blockquote>
+            <blockquote>"Se o app mostrasse lado a lado com o mercado, eu fechava ali." — P7</blockquote>
+          </article>
+        </div>
+      </div>
+
+      <div class="cycle-block">
+        <h3>Hipóteses · SVM · Feature</h3>
+        <table>
+          <thead><tr><th>ID</th><th>Hipótese</th><th>SVM</th></tr></thead>
+          <tbody>
+            <tr><td>H4</td><td>Comparador CET in-app reduz saída Safari ≥8 pp e conversão ≥2 pp</td><td><strong>Strong</strong></td></tr>
+            <tr><td>H5</td><td>Sticky iOS reduz gap iOS/Android ≥1,5 pp</td><td><strong>Strong</strong></td></tr>
+          </tbody>
+        </table>
+
+        <h4>Feature — FEAT-CONSIG-COMP-02</h4>
+        <ul>
+          <li><strong>US-04:</strong> CET vs faixa de mercado (fonte BCB/regulatório)</li>
+          <li><strong>US-05:</strong> Alerta + deep link se sair do app na simulação</li>
+          <li><strong>US-06 (iOS):</strong> Comparador sticky no scroll</li>
+        </ul>
+        <p><span class="badge badge-ok">Gate 02 ciclo 2</span> ·
+           <span class="badge badge-ok">Gate 03 scale</span> — EXP-C02-01: 7/10 reais, Safari 13%; EXP-C02-02: gap iOS 0,3 pp</p>
+      </div>
+    </section>
+
+    <!-- PILOTO CARTÃO -->
+    <section class="initiative" id="piloto">
+      <h2>Piloto cartão virtual</h2>
+      <p class="meta">
+        <code>piloto-cartao-virtual-2026</code> · Jovens profissionais 25–35 ·
+        KR1 ativação cartão virtual 18%→24% · Feature <code>FEAT-CV-ONBOARD-01</code>
+      </p>
+
+      <div class="cycle-block">
+        <h3>Três visões</h3>
+        <div class="grid-3">
+          <article class="card mercado">
+            <h5>Mercado</h5>
+            <p>Fintechs: emissão virtual &lt;3 min · Uso de wallets +12% YoY.</p>
+            <p>Nubank / Inter como benchmark de velocidade e incentivo pós-emissão.</p>
+          </article>
+          <article class="card produto">
+            <h5>Produto</h5>
+            <table>
+              <tr><th>Etapa</th><th>Taxa</th><th>Drop</th></tr>
+              <tr><td>Início onboarding</td><td>100%</td><td>—</td></tr>
+              <tr><td>Biometria OK</td><td>57%</td><td><strong>43%</strong></td></tr>
+              <tr><td>Cartão emitido</td><td>42%</td><td>15%</td></tr>
+              <tr><td>1ª compra 30d</td><td>18%</td><td>24%</td></tr>
+            </table>
+            <p>Maior drop na <strong>biometria</strong> · rage click no ícone ajuda</p>
+          </article>
+          <article class="card cliente">
+            <h5>Cliente</h5>
+            <blockquote>"Travei na selfie, não sabia se tinha dado certo." — P3</blockquote>
+            <blockquote>"Emiti o cartão mas não sabia onde usar na hora." — P5</blockquote>
+          </article>
+        </div>
+      </div>
+
+      <div class="cycle-block">
+        <h3>Mapa de evidências</h3>
+        <table>
+          <thead><tr><th>Oportunidade</th><th>Mercado</th><th>Produto</th><th>Cliente</th><th>KR</th></tr></thead>
+          <tbody>
+            <tr><td>O1 Biometria/onboarding</td><td>✓</td><td>✓</td><td>✓</td><td>KR1</td></tr>
+            <tr><td>O2 Tutorial 1ª compra</td><td>✓</td><td>✓</td><td>✓</td><td>KR2</td></tr>
+            <tr><td>O3 Feedback pós-selfie</td><td>—</td><td>✓</td><td>✓</td><td>KR1</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Priorizada:</strong> O1</p>
+
+        <h4>Hipóteses · SVM · Protótipo</h4>
+        <table>
+          <tr><th>H1</th><td>Fluxo enxuto + feedback biometria</td><td>SVM <strong>Strong</strong></td></tr>
+          <tr><th>H2</th><td>Checklist 1ª compra pós-emissão</td><td>SVM <strong>Iterate</strong></td></tr>
+          <tr><th>H3</th><td>Prova social</td><td>SVM Weak (fora escopo)</td></tr>
+        </table>
+        <p>Protótipo: T1 Boas-vindas → T2 Biometria guiada → T3 Cartão + checklist wallet → T4 Confirmação</p>
+
+        <h4>Feature — FEAT-CV-ONBOARD-01</h4>
+        <ul>
+          <li>US-01: Progresso na biometria · ≤4 etapas</li>
+          <li>US-02: Retry selfie Android sem reiniciar</li>
+          <li>US-03: Checklist onde usar virtual + deep link wallet</li>
+        </ul>
+        <p><span class="badge badge-ok">Gate 02</span> · Gate 03 scale 6/8 clientes reais</p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="initiative" id="resumo">
+      <h2>Resumo comparativo</h2>
+      <div class="cycle-block">
+        <table>
+          <thead>
+            <tr><th>Iniciativa</th><th>Outcome</th><th>Oportunidade #1</th><th>Feature</th><th>Validação real</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Consignado c1</td>
+              <td>Conversão 8%→14%</td>
+              <td>CET / margem upfront</td>
+              <td>FEAT-CONSIG-SIM-01</td>
+              <td>7/10 (favo 03)</td>
+            </tr>
+            <tr>
+              <td>Consignado c2</td>
+              <td>KR1 at_risk → comparador</td>
+              <td>Saída Safari / comparação</td>
+              <td>FEAT-CONSIG-COMP-02</td>
+              <td>7/10 + iOS gap 0,3pp</td>
+            </tr>
+            <tr>
+              <td>Cartão virtual</td>
+              <td>Ativação 18%→24%</td>
+              <td>Abandono biometria</td>
+              <td>FEAT-CV-ONBOARD-01</td>
+              <td>6/8 (favo 03)</td>
+            </tr>
+          </tbody>
+        </table>
+        <h4>Modelo PDLC respeitado</h4>
+        <ul>
+          <li>Três visões (mercado, produto, cliente) em todas as iniciativas</li>
+          <li>SVM marcado <strong>[SINTÉTICO]</strong> — distinto de teste com clientes reais (favo 03)</li>
+          <li>Oportunidade priorizada com evidência em ≥2 visões</li>
+          <li>Histórias por valor + segmento · Gate 02 = pacote <code>candidato</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>PDLC Dry Run · Favo 02 Discovery · Dados fictícios rotulados [DRY-RUN]</p>
+      <p><a href="https://github.com/rodrigomacia/pdlc_dry_run">github.com/rodrigomacia/pdlc_dry_run</a> ·
+         <a href="https://github.com/rodrigomacia/pdlc_devin_cli">Framework PDLC</a></p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -39,6 +39,10 @@ Execução em pasta isolada — não altera o runtime `colmeia/` do framework.
 | Consignado jovem AR | [REGISTRO-consignado-jovem-alta-renda-2026.md](./REGISTRO-consignado-jovem-alta-renda-2026.md) |
 | Consignado **ciclo 02** | [ciclo02 início](./orquestracao/consignado-ciclo02-inicio.md) → [favo 03](./orquestracao/consignado-ciclo02-favo03.md) Gate 03 ✓ → **favo 04** |
 
+## Documentação HTML
+
+- **[Discovery completo](./docs/discovery-completo.html)** — todas as três visões, hipóteses, SVM e features dos dry runs
+
 ## Publicar
 
-Ver [PUBLICAR.md](./PUBLICAR.md) — remoto sugerido: `rodrigomacia/pdlc_dry_run`
+Ver [PUBLICAR.md](./PUBLICAR.md) — remoto: `rodrigomacia/pdlc_dry_run`
