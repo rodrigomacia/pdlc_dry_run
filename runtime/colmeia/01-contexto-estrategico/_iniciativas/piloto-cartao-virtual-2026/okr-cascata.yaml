@@ -1,0 +1,23 @@
+# [DRY-RUN] Cascata OKR — piloto-cartao-virtual-2026
+iniciativa: piloto-cartao-virtual-2026
+ciclo: 2026-Q2
+
+nos:
+  - id: OKR-PLT-04
+    nivel: L1
+    objective: App como relação digital principal PF
+    filhos:
+      - id: OKR-TRIBO-CART-02
+        parent_ref: OKR-PLT-04
+        contribui: 35
+        objective: Receita e engajamento cartões digitais
+        filhos:
+          - id: OKR-INI-PILOTO-CV-01
+            parent_ref: OKR-TRIBO-CART-02
+            contribui: 100
+            objective: Ativação cartão virtual jovens profissionais
+            krs: [KR1, KR2, KR3]
+
+validacao:
+  soma_pesos_por_pai: ok
+  todos_parent_ref: ok

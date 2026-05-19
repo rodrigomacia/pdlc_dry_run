@@ -1,0 +1,18 @@
+# [DRY-RUN] ciclo 02
+iniciativa: consignado-jovem-alta-renda-2026
+ciclo: 2
+hipoteses:
+  - id: H4
+    texto: Comparador CET in-app (vs média mercado regulatória) reduz saída Safari em ≥8 pp e aumenta conversão ≥2 pp
+    oportunidade_ref: O5
+    kr_ref: KR1
+    segmento: jovem_alta_renda_25_35
+    risco: medio
+    confianca: alta
+  - id: H5
+    texto: Variante iOS com comparador sticky reduz gap iOS/Android em conversão em ≥1,5 pp
+    oportunidade_ref: O5-ios
+    kr_ref: KR1
+    segmento: jovem_alta_renda_ios
+    risco: medio
+    confianca: media

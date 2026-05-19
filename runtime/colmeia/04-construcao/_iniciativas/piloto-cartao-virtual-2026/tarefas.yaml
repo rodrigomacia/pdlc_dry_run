@@ -1,0 +1,19 @@
+# [DRY-RUN] tarefas.yaml
+iniciativa: piloto-cartao-virtual-2026
+commit_hash: dry-run-a1b2c3d
+
+tarefas:
+  - id: T1
+    historia: US-01
+    entregavel: codigo
+    status: pronto
+  - id: T2
+    historia: US-02
+    entregavel: codigo
+    status: pronto
+  - id: T3
+    historia: US-03
+    entregavel: codigo
+    status: pronto
+
+cobertura_historias: 100%

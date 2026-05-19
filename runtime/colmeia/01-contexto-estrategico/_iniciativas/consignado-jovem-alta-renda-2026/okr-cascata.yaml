@@ -1,0 +1,13 @@
+# [DRY-RUN]
+iniciativa: consignado-jovem-alta-renda-2026
+nos:
+  - id: OKR-PLT-CRED-01
+    nivel: L1
+    filhos:
+      - id: OKR-TRIBO-CONSIG-01
+        parent_ref: OKR-PLT-CRED-01
+        contribui: 40
+        filhos:
+          - id: OKR-INI-CONSIG-JAR-01
+            parent_ref: OKR-TRIBO-CONSIG-01
+            contribui: 100

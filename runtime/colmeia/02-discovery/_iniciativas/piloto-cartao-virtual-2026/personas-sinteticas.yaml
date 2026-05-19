@@ -1,0 +1,8 @@
+# [SINTÉTICO] [DRY-RUN]
+versao: "2026-05-18"
+iniciativa: piloto-cartao-virtual-2026
+personas:
+  - id: PS-01
+    perfil: Analista 27a, heavy app, primeira virtual
+  - id: PS-02
+    perfil: Engenheira 32a, comparou com Nubank

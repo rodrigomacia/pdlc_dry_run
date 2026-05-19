@@ -1,0 +1,5 @@
+# [DRY-RUN] NFR — piloto-cartao-virtual-2026
+disponibilidade: 99.9
+latencia_p95_ms: 800
+lgpd: consentimento_biometria_registrado
+acessibilidade: WCAG_AA_fluxo_critico

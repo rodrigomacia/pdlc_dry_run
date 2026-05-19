@@ -1,0 +1,21 @@
+# [DRY-RUN]
+iniciativa: consignado-jovem-alta-renda-2026
+hipoteses:
+  - id: H1
+    texto: Breakdown visual CET + custo total na simulação aumenta conversão em ≥4 pp
+    kr_ref: KR1
+    segmento: jovem_alta_renda_25_35
+    risco: medio
+    confianca: alta
+  - id: H2
+    texto: Mostrar margem consignável antes do valor desejado reduz abandono em ≥15%
+    kr_ref: KR1
+    segmento: jovem_alta_renda_25_35
+    risco: baixo
+    confianca: media
+  - id: H3
+    texto: Pré-aprovação em <90s aumenta contratação em ≥3 pp
+    kr_ref: KR2
+    segmento: jovem_alta_renda_25_35
+    risco: alto
+    confianca: baixa

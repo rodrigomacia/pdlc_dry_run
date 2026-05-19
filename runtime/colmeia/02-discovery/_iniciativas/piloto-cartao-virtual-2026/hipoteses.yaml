@@ -1,0 +1,26 @@
+# [DRY-RUN] hipoteses.yaml — piloto-cartao-virtual-2026
+iniciativa: piloto-cartao-virtual-2026
+kr_ref: KR1
+
+hipoteses:
+  - id: H1
+    texto: Reduzir etapas e feedback na biometria aumenta conclusão do onboarding em ≥5 pp
+    oportunidade_ref: O1
+    segmento: jovens_prof_25_35
+    risco: medio
+    confianca: media
+    kr_ref: KR1
+  - id: H2
+    texto: Checklist "primeira compra" pós-emissão reduz tempo até 1ª compra em ≥2 dias
+    oportunidade_ref: O2
+    segmento: jovens_prof_25_35
+    risco: baixo
+    confianca: media
+    kr_ref: KR2
+  - id: H3
+    texto: Prova social no fluxo aumenta NPS pós-ativação em ≥5 pts
+    oportunidade_ref: O3
+    segmento: jovens_prof_25_35
+    risco: alto
+    confianca: baixa
+    kr_ref: KR3
